@@ -8,27 +8,27 @@ import android.widget.TextView;
 
 import com.colorwalletalert.model.Category;
 import com.colorwalletalert.ui.R;
-
-import java.util.List;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
+public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, FirebaseCategoryAdapter.CategoryViewHolder> {
+    static final String TAG = "FirebaseCategoryAdapter";
+    private OnItemClickListener listener;
 
-    private final List<Category> mCategoryList;
-    private final OnItemClickListener listener;
-    private TextView mCategoryDescriptionTextView;
-    private TextView mCategoryTargetTextView;
 
 
     public interface OnItemClickListener {
         void onItemClick(Category category);
     }
 
-    public CategoryAdapter (List<Category> categoryList, OnItemClickListener listenerOnItemClickListener) {
-        mCategoryList = categoryList;
-        listener = listenerOnItemClickListener;
+
+    public FirebaseCategoryAdapter (FirebaseRecyclerOptions<Category> options,
+                                    OnItemClickListener listener) {
+        super(options);
+        this.listener = listener;
     }
 
     @NonNull
@@ -44,19 +44,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryViewHolder movieViewHolder, int i) {
-        movieViewHolder.bind(mCategoryList.get(i), listener);
-    }
-
-
-    @Override
-    public int getItemCount() {
-        return mCategoryList.size();
+    protected void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int i, @NonNull Category category) {
+//        categoryViewHolder.mCategoryDescriptionTextView.setText(category.getDescription());
+        categoryViewHolder.bind(category, listener);
     }
 
 
     class CategoryViewHolder extends RecyclerView.ViewHolder {
 
+        TextView mCategoryDescriptionTextView;
+        TextView mCategoryTargetTextView;
         CategoryViewHolder(View itemView){
             super(itemView);
             mCategoryDescriptionTextView =  itemView.findViewById(R.id.category_description_text_view);
@@ -66,17 +63,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         void bind(final Category category, final OnItemClickListener listener){
             mCategoryDescriptionTextView.setText(category.getDescription());
             mCategoryTargetTextView.setText(category.getTarget().toString());
-//            Picasso.get()
-//                    .load(movieDB.getPosterPath())
-//                    .error(R.mipmap.ic_launcher)
-//                    .into(listItemMoviePoster);
-//
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    listener.onItemClick(movieDB);
-//                }
-//            });
+
 
         }
     }
