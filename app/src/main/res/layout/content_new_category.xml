@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewCategoryActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/category_description_hint_text"
+        android:layout_marginEnd="@dimen/form_marginRight"
+        android:layout_marginStart="@dimen/form_marginLeft"
+        android:layout_marginTop="@dimen/form_marginTop"
+        android:layout_marginBottom="@dimen/form_marginBottom">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/new_category_description_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/category_target_hint_text"
+        android:layout_marginEnd="@dimen/form_marginRight"
+        android:layout_marginStart="@dimen/form_marginLeft"
+        android:layout_marginTop="@dimen/form_marginTop"
+        android:layout_marginBottom="@dimen/form_marginBottom">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/new_category_target_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/material_button"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/form_marginLeft"
+        android:layout_marginTop="@dimen/form_marginTop"
+        android:layout_marginEnd="@dimen/form_marginRight"
+        android:layout_marginBottom="@dimen/form_marginBottom"
+        android:text="@string/category_button_text"
+        android:textAppearance="@style/Theme.AppCompat.DayNight"
+        android:textSize="@dimen/form_text_size"
+        android:onClick="addNewCategory"/>
+
+</LinearLayout>

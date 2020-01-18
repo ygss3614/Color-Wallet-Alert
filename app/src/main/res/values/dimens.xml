@@ -4,4 +4,11 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="list_side_margin">64dp</dimen>
     <dimen name="card_elevation">6dp</dimen>
+
+    <!--form margins-->
+    <dimen name="form_marginRight">40dp</dimen>
+    <dimen name="form_marginLeft">40dp</dimen>
+    <dimen name="form_marginTop">10dp</dimen>
+    <dimen name="form_marginBottom">10dp</dimen>
+    <dimen name="form_text_size">18sp</dimen>
 </resources>

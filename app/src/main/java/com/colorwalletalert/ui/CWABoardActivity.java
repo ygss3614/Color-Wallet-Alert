@@ -1,5 +1,7 @@
 package com.colorwalletalert.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,9 +27,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CWABoardActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
-    DatabaseReference myRef;
-    FirebaseDatabase database;
-    List<Category> spacecrafts=new ArrayList<>();
     private FirebaseCategoryAdapter mCategoryAdapter;
 
 
@@ -42,8 +41,9 @@ public class CWABoardActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Context context = CWABoardActivity.this;
+                Intent intent = new Intent(context, NewCategoryActivity.class);
+                context.startActivity(intent);
             }
         });
 
@@ -57,7 +57,6 @@ public class CWABoardActivity extends AppCompatActivity {
         mCategoryAdapter.startListening();
 
     }
-
 
 
     /***

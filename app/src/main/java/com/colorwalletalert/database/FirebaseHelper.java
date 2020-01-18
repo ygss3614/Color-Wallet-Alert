@@ -51,5 +51,17 @@ public class FirebaseHelper {
         return options;
     }
 
+    /***
+     * name: saveCategories
+     * description: save a new Category
+     * params: Category category
+     *
+     * @return
+     */
+    public void saveCleaning(Category category){
+        DatabaseReference messagesRef = database.getReference(DOCUMENT_CATEGORY);
+        String categoryIdKey = messagesRef.push().getKey();
+        messagesRef.child(categoryIdKey).setValue(category);
+    }
 
 }
