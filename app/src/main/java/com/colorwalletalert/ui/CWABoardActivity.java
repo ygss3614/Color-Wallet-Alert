@@ -46,7 +46,7 @@ public class CWABoardActivity extends AppCompatActivity {
                 context.startActivity(intent);
             }
         });
-
+        // TODO: tratar lista de categorias vazia
         setAdapter();
     }
 
@@ -66,15 +66,17 @@ public class CWABoardActivity extends AppCompatActivity {
      *
      */
     public void setAdapter(){
+        Context context = CWABoardActivity.this;
         RecyclerView CategoryRecyclerView = findViewById(R.id.category_recycler_view);
+        // TODO calcular a quantidade de colunas no grid de acordo com o tamanho da tela
         RecyclerView.LayoutManager mLayoutManager =
-                new GridLayoutManager(CWABoardActivity.this, 2);
+                new GridLayoutManager(CWABoardActivity.this, 1);
         CategoryRecyclerView.setLayoutManager(mLayoutManager);
 
         // using FirebaseRecyclerOption to load categories
         FirebaseRecyclerOptions categories = FirebaseHelper.getInstance().readCategories();
 
-        mCategoryAdapter = new FirebaseCategoryAdapter(categories,
+        mCategoryAdapter = new FirebaseCategoryAdapter(categories, context,
                 new FirebaseCategoryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Category category) {

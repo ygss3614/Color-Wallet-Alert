@@ -1,15 +1,19 @@
 package com.colorwalletalert.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.colorwalletalert.model.Category;
+import com.colorwalletalert.ui.CWABoardActivity;
 import com.colorwalletalert.ui.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, FirebaseCategoryAdapter.CategoryViewHolder> {
     static final String TAG = "FirebaseCategoryAdapter";
     private OnItemClickListener listener;
+    private Context context;
 
 
 
@@ -26,9 +31,11 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
 
 
     public FirebaseCategoryAdapter (FirebaseRecyclerOptions<Category> options,
+                                    Context context,
                                     OnItemClickListener listener) {
         super(options);
         this.listener = listener;
+        this.context = context;
     }
 
     @NonNull
@@ -54,17 +61,34 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
 
         TextView mCategoryDescriptionTextView;
         TextView mCategoryTargetTextView;
+        TextView mCategorySuggestedTextView;
+        ImageView mCategoryIconImageView;
+
         CategoryViewHolder(View itemView){
             super(itemView);
             mCategoryDescriptionTextView =  itemView.findViewById(R.id.category_description_text_view);
             mCategoryTargetTextView = itemView.findViewById(R.id.category_target_text_view);
+            mCategorySuggestedTextView = itemView.findViewById(R.id.category_sugested_text_view);
+            mCategoryIconImageView = itemView.findViewById(R.id.category_icon_image_view);
         }
 
         void bind(final Category category, final OnItemClickListener listener){
-            mCategoryDescriptionTextView.setText(category.getDescription());
+            mCategoryDescriptionTextView.setText(category.getDescription().toLowerCase());
+            // TODO atualizar esse valor de acordo com o gasto inserido
             mCategoryTargetTextView.setText(category.getTarget().toString());
+            // TODO atualizar esse valor de acordo com o gasto inserido
+            mCategorySuggestedTextView.setText(
+                    String.format("Suggested daily spend %s", category.getTarget().toString()));
 
-
+            if (category.getIconPath() != null && category.getIconPath() != "") {
+                int categoryIconId = context.getResources().getIdentifier(
+                        category.getIconPath(), "drawable", context.getPackageName());
+                if (categoryIconId != 0) {
+                    Picasso.get().load(categoryIconId)
+                            .placeholder(categoryIconId)
+                            .into(mCategoryIconImageView);
+                }
+            }
         }
     }
 }

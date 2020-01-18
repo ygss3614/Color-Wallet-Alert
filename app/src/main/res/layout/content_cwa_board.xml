@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/board_marginStart"
+    android:layout_marginEnd="@dimen/board_marginEnd"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".CWABoardActivity"
     tools:showIn="@layout/activity_cwa_board">
@@ -13,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:scrollbarStyle="outsideOverlay"
-        android:paddingBottom="28dp" />
+        android:orientation="vertical"
+        android:scrollbarStyle="outsideOverlay" />
 
 </androidx.core.widget.NestedScrollView>
