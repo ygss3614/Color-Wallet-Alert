@@ -1,5 +1,7 @@
 package com.colorwalletalert.database;
 
+import android.util.Log;
+
 import com.colorwalletalert.model.Category;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
@@ -45,6 +47,7 @@ public class FirebaseHelper {
             }
         };
 
+
         FirebaseRecyclerOptions<Category> options = new FirebaseRecyclerOptions.Builder<Category>()
                 .setQuery(messagesRef, parser).build();
 
@@ -58,7 +61,7 @@ public class FirebaseHelper {
      *
      * @return
      */
-    public void saveCleaning(Category category){
+    public void saveCategory(Category category){
         DatabaseReference messagesRef = database.getReference(DOCUMENT_CATEGORY);
         String categoryIdKey = messagesRef.push().getKey();
         messagesRef.child(categoryIdKey).setValue(category);

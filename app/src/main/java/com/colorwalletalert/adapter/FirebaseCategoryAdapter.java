@@ -80,14 +80,10 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
             mCategorySuggestedTextView.setText(
                     String.format("Suggested daily spend %s", category.getTarget().toString()));
 
-            if (category.getIconPath() != null && category.getIconPath() != "") {
-                int categoryIconId = context.getResources().getIdentifier(
-                        category.getIconPath(), "drawable", context.getPackageName());
-                if (categoryIconId != 0) {
-                    Picasso.get().load(categoryIconId)
-                            .placeholder(categoryIconId)
+            if (category.getIconPath() != -1) {
+                    Picasso.get().load(category.getIconPath())
+                            .placeholder(category.getIconPath())
                             .into(mCategoryIconImageView);
-                }
             }
         }
     }

@@ -3,6 +3,7 @@ package com.colorwalletalert.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.colorwalletalert.adapter.FirebaseCategoryAdapter;
 import com.colorwalletalert.database.FirebaseHelper;
 import com.colorwalletalert.model.Category;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class CWABoardActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
     private FirebaseCategoryAdapter mCategoryAdapter;
-
+    private  MaterialCardView mMessageCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,8 @@ public class CWABoardActivity extends AppCompatActivity {
             }
         });
         // TODO: tratar lista de categorias vazia
+        mMessageCardView = findViewById(R.id.empty_message_cardview);
+        mMessageCardView.setVisibility(View.GONE);
         setAdapter();
     }
 
@@ -57,7 +61,6 @@ public class CWABoardActivity extends AppCompatActivity {
         mCategoryAdapter.startListening();
 
     }
-
 
     /***
      * name: setAdapter
@@ -75,6 +78,9 @@ public class CWABoardActivity extends AppCompatActivity {
 
         // using FirebaseRecyclerOption to load categories
         FirebaseRecyclerOptions categories = FirebaseHelper.getInstance().readCategories();
+        Log.d(TAG, String.valueOf(categories.getSnapshots().size()));
+
+        Log.d(TAG, String.valueOf(categories));
 
         mCategoryAdapter = new FirebaseCategoryAdapter(categories, context,
                 new FirebaseCategoryAdapter.OnItemClickListener() {

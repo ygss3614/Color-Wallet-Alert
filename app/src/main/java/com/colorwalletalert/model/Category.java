@@ -3,11 +3,11 @@ package com.colorwalletalert.model;
 public class Category {
     public String description;
     public Float target;
-    public String iconPath;
+    public int iconPath;
 
     public Category() {}
 
-    public Category(String description, Float target, String iconPath) {
+    public Category(String description, Float target, int iconPath) {
         this.description = description;
         this.target = target;
         this.iconPath = iconPath;
@@ -21,7 +21,7 @@ public class Category {
         return target;
     }
 
-    public String getIconPath() {
+    public int getIconPath() {
         return iconPath;
     }
 }

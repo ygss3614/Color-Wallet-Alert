@@ -9,7 +9,15 @@
     <dimen name="form_marginRight">40dp</dimen>
     <dimen name="form_marginLeft">40dp</dimen>
     <dimen name="form_marginTop">10dp</dimen>
-    <dimen name="form_marginBottom">10dp</dimen>
+    <dimen name="form_marginBottom">4dp</dimen>
+    <dimen name="form_icon_marginRight">4dp</dimen>
+    <dimen name="form_icon_marginLeft">4dp</dimen>
+    <dimen name="form_icon_marginTop">4dp</dimen>
+    <dimen name="form_icon_paddingBottom">5dp</dimen>
+    <dimen name="form_icon_paddingRight">5dp</dimen>
+    <dimen name="form_icon_paddingLeft">5dp</dimen>
+    <dimen name="form_icon_paddingTop">5dp</dimen>
+    <dimen name="form_icon_marginBottom">5dp</dimen>
     <dimen name="form_text_size">18sp</dimen>
 
     <!--board margins-->

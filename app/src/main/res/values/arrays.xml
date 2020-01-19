@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="category_icons">
+        <item>@drawable/ic_beach_access_black_24dp</item>
+        <item>@drawable/ic_call_black_24dp</item>
+        <item>@drawable/ic_credit_card_black_24dp</item>
+        <item>@drawable/ic_directions_car_black_24dp</item>
+        <item>@drawable/ic_fitness_center_black_24dp</item>
+        <item>@drawable/ic_flight_black_24dp</item>
+        <item>@drawable/ic_home_black_24dp</item>
+        <item>@drawable/ic_restaurant_black_24dp</item>
+        <item>@drawable/ic_local_bar_black_24dp</item>
+        <item>@drawable/ic_local_grocery_store_black_24dp</item>
+        <item>@drawable/ic_local_hospital_black_24dp</item>
+        <item>@drawable/ic_local_library_black_24dp</item>
+        <item>@drawable/ic_pets_black_24dp</item>
+        <item>@drawable/ic_tag_faces_black_24dp</item>
+        <item>@drawable/ic_spa_black_24dp</item>
+        <item>@drawable/ic_child_care_black_24dp</item>
+        <item>@drawable/ic_redeem_black_24dp</item>
+        <item>@drawable/ic_security_black_24dp</item>
+
+    </array>
+
+</resources>

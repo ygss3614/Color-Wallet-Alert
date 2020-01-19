@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,12 +11,21 @@
     tools:context=".CWABoardActivity"
     tools:showIn="@layout/activity_cwa_board">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/category_recycler_view"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:orientation="vertical"
-        android:scrollbarStyle="outsideOverlay" />
+        android:orientation="vertical">
+        <!-- Empty Category list message -->
+        <include layout="@layout/category_list_empty"></include>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:scrollbarStyle="outsideOverlay" />
+    </LinearLayout>
+
 
 </androidx.core.widget.NestedScrollView>
