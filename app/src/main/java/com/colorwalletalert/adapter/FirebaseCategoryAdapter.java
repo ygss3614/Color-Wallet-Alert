@@ -2,7 +2,6 @@ package com.colorwalletalert.adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.colorwalletalert.database.FirebaseHelper;
 import com.colorwalletalert.model.Category;
-import com.colorwalletalert.ui.CWABoardActivity;
 import com.colorwalletalert.ui.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -19,8 +17,6 @@ import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, FirebaseCategoryAdapter.CategoryViewHolder> {
@@ -32,6 +28,7 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
 
     public interface OnItemClickListener {
         void onItemClick(Category category);
+        void onDetailClick(Category category);
     }
 
 
@@ -68,6 +65,7 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
         TextView mCategoryAvailableAmountTextView;
         TextView mCategorySuggestedTextView;
         ImageView mCategoryIconImageView;
+        ImageView mCategorySpendsImageView;
         MaterialCardView mCategoryCardView;
 
         CategoryViewHolder(View itemView){
@@ -76,15 +74,16 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
             mCategoryAvailableAmountTextView = itemView.findViewById(R.id.category_available_amount_text_view);
             mCategorySuggestedTextView = itemView.findViewById(R.id.category_sugested_text_view);
             mCategoryIconImageView = itemView.findViewById(R.id.category_icon_image_view);
+            mCategorySpendsImageView = itemView.findViewById(R.id.category_detail_spends_image_view);
             mCategoryCardView = itemView.findViewById(R.id.category_card_view);
         }
 
         void bind(final Category category, final OnItemClickListener listener){
 
-            // COMPLETED call getCategorySpend to update available amount
+            // COMPLETED call getCategorySpendToUpdate to update available amount
             // and then update the TextViews
             //get total spend and update category
-            FirebaseHelper.getInstance().getCategorySpend(category);
+            FirebaseHelper.getInstance().getCategorySpendToUpdate(category);
 
             Resources resource = context.getResources();
             mCategoryCardView.setBackgroundColor(resource.getColor(category.getCardBackgroundColor()));
@@ -112,6 +111,13 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
                 @Override
                 public void onClick(View view) {
                     listener.onItemClick(category);
+                }
+            });
+
+            mCategorySpendsImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onDetailClick(category);
                 }
             });
 

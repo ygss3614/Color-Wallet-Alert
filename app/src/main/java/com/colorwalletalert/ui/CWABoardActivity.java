@@ -80,18 +80,27 @@ public class CWABoardActivity extends AppCompatActivity {
 
         mCategoryAdapter = new FirebaseCategoryAdapter(categories, mContext,
                 new FirebaseCategoryAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Category category) {
+                @Override
+                public void onItemClick(Category category) {
 
-                Intent intent = new Intent(mContext, NewCategorySpendActivity.class);
-                intent.putExtra(NewCategorySpendActivity.EXTRA_CATEGORY, category);
-                mContext.startActivity(intent);
-            }
-        });
+                    Intent intent = new Intent(mContext, NewCategorySpendActivity.class);
+                    intent.putExtra(NewCategorySpendActivity.EXTRA_CATEGORY, category);
+                    mContext.startActivity(intent);
+                }
+
+                @Override
+                public void onDetailClick(Category category) {
+                    Intent intent = new Intent(mContext, CategorySpendsDetailedActivity.class);
+                    intent.putExtra(CategorySpendsDetailedActivity.EXTRA_CATEGORY, category);
+                    mContext.startActivity(intent);
+                }
+            });
 
         CategoryRecyclerView.setAdapter(mCategoryAdapter);
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

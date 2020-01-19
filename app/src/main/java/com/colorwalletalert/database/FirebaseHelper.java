@@ -48,8 +48,7 @@ public class FirebaseHelper {
      * @return
      */
     public FirebaseRecyclerOptions<Category> readCategories(){
-        DatabaseReference mFirebaseDatabaseReference = database.getReference();
-        DatabaseReference messagesRef = mFirebaseDatabaseReference.child(DOCUMENT_CATEGORY);
+        DatabaseReference messagesRef = database.getReference(DOCUMENT_CATEGORY);
 
         SnapshotParser<Category> parser = new SnapshotParser<Category>() {
             @Override
@@ -65,6 +64,31 @@ public class FirebaseHelper {
 
         return options;
     }
+
+    /***
+     * name: readCategoriesSpends
+     * description: read from Firebase database categories spends
+     * params:
+     *
+     * @return
+     */
+    public FirebaseRecyclerOptions<CategorySpend> readCategoriesSpends(){
+        DatabaseReference messagesRef = database.getReference(DOCUMENT_SPEND);
+
+        SnapshotParser<CategorySpend> parser = new SnapshotParser<CategorySpend>() {
+            @Override
+            public CategorySpend parseSnapshot(DataSnapshot dataSnapshot) {
+                CategorySpend friendlyMessage = dataSnapshot.getValue(CategorySpend.class);
+                return friendlyMessage;
+            }
+        };
+
+        FirebaseRecyclerOptions<CategorySpend> options = new FirebaseRecyclerOptions.Builder<CategorySpend>()
+                .setQuery(messagesRef, parser).build();
+        Log.d(TAG, String.valueOf(options.getSnapshots().size()));
+        return options;
+    }
+
 
     /***
      * name: saveCategories
@@ -97,14 +121,14 @@ public class FirebaseHelper {
     }
 
     /***
-     * name: getCategorySpend
+     * name: getCategorySpendToUpdate
      * description: get spends by category
      * params: CategorySpend categorySpend
      *
      * @return
      * @param category
      */
-    public void getCategorySpend(final Category category){
+    public void getCategorySpendToUpdate(final Category category){
 
         DatabaseReference messagesRef = database.getReference(DOCUMENT_SPEND);
 
