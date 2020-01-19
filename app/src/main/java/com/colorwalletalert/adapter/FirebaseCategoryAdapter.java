@@ -17,6 +17,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, FirebaseCategoryAdapter.CategoryViewHolder> {
@@ -90,6 +91,14 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
                             .placeholder(category.getIconPath())
                             .into(mCategoryIconImageView);
             }
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(category);
+                }
+            });
+
         }
     }
 }

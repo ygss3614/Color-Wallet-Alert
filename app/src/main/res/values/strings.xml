@@ -6,6 +6,7 @@
     <string name="category_description_hint_text">Description</string>
     <string name="category_target_hint_text">Target</string>
     <string name="category_icon_label_text">Select one Icon</string>
+    <string name="category_spend_hint_text">Spend</string>
     <string name="category_button_text">Save</string>
 
 
@@ -19,7 +20,6 @@
     <string name="category_suggested_daily_spend">Suggested daily spend $ %s</string>
     <string name="category_list_empty_problem">Why don\'t you add your first category?</string>
     <string name="category_list_empty_solution">Click the yellow button to start! </string>
-
 
 
 </resources>

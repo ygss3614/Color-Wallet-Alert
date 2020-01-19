@@ -58,8 +58,6 @@ public class NewCategoryActivity extends AppCompatActivity {
     public void backToBoard(){
         Context context = NewCategoryActivity.this;
         Intent intent = new Intent(context, CWABoardActivity.class);
-        mMessageCardView = findViewById(R.id.empty_message_cardview);
-        mMessageCardView.setVisibility(View.INVISIBLE);
         context.startActivity(intent);
     }
 

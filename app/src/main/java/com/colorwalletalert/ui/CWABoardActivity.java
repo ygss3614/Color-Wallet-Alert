@@ -3,6 +3,7 @@ package com.colorwalletalert.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ public class CWABoardActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
     private FirebaseCategoryAdapter mCategoryAdapter;
     private  MaterialCardView mMessageCardView;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +34,14 @@ public class CWABoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cwa_board);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mContext = CWABoardActivity.this;
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context = CWABoardActivity.this;
-                Intent intent = new Intent(context, NewCategoryActivity.class);
-                context.startActivity(intent);
+                Intent intent = new Intent(mContext, NewCategoryActivity.class);
+                mContext.startActivity(intent);
             }
         });
         // TODO: tratar lista de categorias vazia
@@ -63,7 +65,6 @@ public class CWABoardActivity extends AppCompatActivity {
      *
      */
     public void setAdapter(){
-        Context context = CWABoardActivity.this;
         RecyclerView CategoryRecyclerView = findViewById(R.id.category_recycler_view);
         // TODO calcular a quantidade de colunas no grid de acordo com o tamanho da tela
         RecyclerView.LayoutManager mLayoutManager =
@@ -72,15 +73,16 @@ public class CWABoardActivity extends AppCompatActivity {
 
         // using FirebaseRecyclerOption to load categories
         FirebaseRecyclerOptions categories = FirebaseHelper.getInstance().readCategories();
-        Log.d(TAG, String.valueOf(categories.getSnapshots().size()));
 
-        Log.d(TAG, String.valueOf(categories));
 
-        mCategoryAdapter = new FirebaseCategoryAdapter(categories, context,
+        mCategoryAdapter = new FirebaseCategoryAdapter(categories, mContext,
                 new FirebaseCategoryAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Category category) {
 
+                Intent intent = new Intent(mContext, NewCategorySpendActivity.class);
+                intent.putExtra(NewCategorySpendActivity.EXTRA_CATEGORY, category);
+                mContext.startActivity(intent);
             }
         });
 
