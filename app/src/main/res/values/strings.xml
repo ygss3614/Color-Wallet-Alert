@@ -15,8 +15,11 @@
     <string name="category_suggested_text">Suggested daily spend $18</string>
     <string name="category_status_content_description">Category Status</string>
     <string name="category_icon">Category Icon</string>
+    <string name="category_currency">$ %s</string>
+    <string name="category_suggested_daily_spend">Suggested daily spend $ %s</string>
     <string name="category_list_empty_problem">Why don\'t you add your first category?</string>
     <string name="category_list_empty_solution">Click the yellow button to start! </string>
+
 
 
 </resources>

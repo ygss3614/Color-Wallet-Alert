@@ -1,5 +1,7 @@
 package com.colorwalletalert.model;
 
+import java.text.DecimalFormat;
+
 public class Category {
     public String description;
     public Float target;
@@ -24,4 +26,16 @@ public class Category {
     public int getIconPath() {
         return iconPath;
     }
+
+    public Float roundTwoDecimals(Float d) {
+        DecimalFormat twoDForm = new DecimalFormat("#,##");
+        return Float.valueOf(twoDForm.format(d));
+    }
+
+    public Float getSuggestedDailySpend (){
+
+        // TODO: calcular de acordo com os dias restantes do mês
+        return roundTwoDecimals(this.target/30);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.colorwalletalert.adapter;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,12 +74,16 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
         }
 
         void bind(final Category category, final OnItemClickListener listener){
+            Resources resource = context.getResources();
             mCategoryDescriptionTextView.setText(category.getDescription().toLowerCase());
             // TODO atualizar esse valor de acordo com o gasto inserido
-            mCategoryTargetTextView.setText(category.getTarget().toString());
+            mCategoryTargetTextView.setText(
+                    String.format(resource.getString(R.string.category_currency),
+                            category.getTarget().toString()));
             // TODO atualizar esse valor de acordo com o gasto inserido
             mCategorySuggestedTextView.setText(
-                    String.format("Suggested daily spend %s", category.getTarget().toString()));
+                    String.format(resource.getString(R.string.category_suggested_daily_spend),
+                            category.getSuggestedDailySpend().toString()));
 
             if (category.getIconPath() != -1) {
                     Picasso.get().load(category.getIconPath())
