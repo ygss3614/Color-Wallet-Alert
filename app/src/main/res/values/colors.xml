@@ -5,4 +5,7 @@
     <color name="colorAccent">#ffc400</color>
     <color name="colorFontPrimary">#455a64</color>
     <color name="colorBoardBackground">#FFEFF5F7</color>
+    <color name="colorCategoryGreen">#FF96E884</color>
+    <color name="colorCategoryOrange">#FFED945C</color>
+    <color name="colorCategoryRed">#FFED5C5C</color>
 </resources>

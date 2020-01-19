@@ -15,9 +15,11 @@ import com.colorwalletalert.ui.CWABoardActivity;
 import com.colorwalletalert.ui.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -66,6 +68,7 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
         TextView mCategoryAvailableAmountTextView;
         TextView mCategorySuggestedTextView;
         ImageView mCategoryIconImageView;
+        MaterialCardView mCategoryCardView;
 
         CategoryViewHolder(View itemView){
             super(itemView);
@@ -73,21 +76,28 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
             mCategoryAvailableAmountTextView = itemView.findViewById(R.id.category_available_amount_text_view);
             mCategorySuggestedTextView = itemView.findViewById(R.id.category_sugested_text_view);
             mCategoryIconImageView = itemView.findViewById(R.id.category_icon_image_view);
+            mCategoryCardView = itemView.findViewById(R.id.category_card_view);
         }
 
         void bind(final Category category, final OnItemClickListener listener){
-            Resources resource = context.getResources();
-            mCategoryDescriptionTextView.setText(category.getDescription().toLowerCase());
 
             // COMPLETED call getCategorySpend to update available amount
+            // and then update the TextViews
             //get total spend and update category
             FirebaseHelper.getInstance().getCategorySpend(category);
+
+            Resources resource = context.getResources();
+            mCategoryCardView.setBackgroundColor(resource.getColor(category.getCardBackgroundColor()));
+
+//            mCategoryCardView.setBackground(
+//                    resource.getColor(category.getCardBackgroundColor()));
+
+            mCategoryDescriptionTextView.setText(category.getDescription().toLowerCase());
 
             mCategoryAvailableAmountTextView.setText(
                     String.format(resource.getString(R.string.category_currency),
                             category.getAvailableAmount().toString()));
 
-            // COMPLETED atualizar esse valor de acordo com o gasto inserido
             mCategorySuggestedTextView.setText(
                     String.format(resource.getString(R.string.category_suggested_daily_spend),
                             category.getSuggestedDailySpend()));

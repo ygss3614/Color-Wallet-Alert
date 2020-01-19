@@ -45,6 +45,10 @@ public class CWABoardActivity extends AppCompatActivity {
             }
         });
         // TODO: tratar lista de categorias vazia
+        // TODO: transição entre as telas
+        // TODO: adicionar subtextos
+        // TODO: adicionar icone do app
+
         mMessageCardView = findViewById(R.id.empty_message_cardview);
         mMessageCardView.setVisibility(View.GONE);
         setAdapter();

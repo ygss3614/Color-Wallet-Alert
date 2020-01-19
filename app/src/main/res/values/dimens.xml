@@ -21,8 +21,8 @@
     <dimen name="form_text_size">18sp</dimen>
 
     <!--board margins-->
-    <dimen name="board_marginEnd">20dp</dimen>
-    <dimen name="board_marginStart">20dp</dimen>
+    <dimen name="board_marginEnd">5dp</dimen>
+    <dimen name="board_marginStart">5dp</dimen>
     <dimen name="board_marginTop">20dp</dimen>
     <dimen name="board_marginBottom">20dp</dimen>
     <dimen name="board_text_size">18sp</dimen>

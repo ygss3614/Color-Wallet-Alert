@@ -4,11 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-import com.colorwalletalert.utils.Utils;
+import com.colorwalletalert.ui.R;
 
-import java.text.DecimalFormat;
-import java.util.Calendar;
-import java.util.Map;
+import com.colorwalletalert.utils.Utils;
 
 public class Category implements Parcelable {
     public String description;
@@ -21,12 +19,12 @@ public class Category implements Parcelable {
     public Category(String description, Float target, int iconPath) {
         this.description = description;
         this.target = target;
+        this.spend = Float.valueOf(0);
         this.iconPath = iconPath;
     }
 
     protected Category(Parcel in) {
         description = in.readString();
-//        key = in.readString();
         if (in.readByte() == 0) {
             target = null;
         } else {
@@ -43,8 +41,6 @@ public class Category implements Parcelable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-//    public void setKey(String key) {  this.key = key;  }
 
     public void setTarget(Float target) {
         this.target = target;
@@ -74,7 +70,6 @@ public class Category implements Parcelable {
         return description;
     }
 
-//    public String getKey() { return key; }
 
     public Float getSpend() { return spend; }
 
@@ -94,7 +89,6 @@ public class Category implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(description);
-//        parcel.writeString(key);
         if (target == null) {
             parcel.writeByte((byte) 0);
         } else {
@@ -140,4 +134,22 @@ public class Category implements Parcelable {
         return (this.target - this.spend);
     }
 
+    /***
+     * name: getCardBackgroundColor
+     * description: Calculates a available amount
+     * params:
+     *
+     * @return int colorId
+     * @param
+     */
+    public int getCardBackgroundColor(){
+        int colorId = R.color.colorCategoryGreen;
+        Float percent = (this.spend / this.target) * 100;
+        if (percent > 50 && percent < 80){
+            colorId = R.color.colorCategoryOrange;
+        }else if (percent > 80){
+            colorId = R.color.colorCategoryRed;
+        }
+        return colorId;
+    }
 }
