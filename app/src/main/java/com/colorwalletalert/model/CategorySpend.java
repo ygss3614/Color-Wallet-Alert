@@ -38,4 +38,21 @@ public class CategorySpend {
     public void setSpendDate(LocalDateTime spendDate) {
         this.spendDate = spendDate;
     }
+
+
+
+    /***
+     * name: getTotalCategorySpend
+     * description: Calculates a suggested daily spend according to amount available and days of
+     * months
+     * params:
+     *
+     * @return Float suggestedDailySpend
+     * @param
+     */
+    public static Float getTotalCategorySpend(){
+        return new Float(10.0);
+
+    }
+
 }

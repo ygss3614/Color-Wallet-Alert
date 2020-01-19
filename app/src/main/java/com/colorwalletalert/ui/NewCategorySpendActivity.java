@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ import com.colorwalletalert.model.CategorySpend;
 import java.util.Objects;
 
 public class NewCategorySpendActivity extends AppCompatActivity {
-
+    private final String TAG = "NewCategorySpendActivity";
     private TextView mNewCategorySpendValueTextView;
     private Category mCategory;
     public static final String EXTRA_CATEGORY = "category";
@@ -26,7 +27,7 @@ public class NewCategorySpendActivity extends AppCompatActivity {
         mNewCategorySpendValueTextView = findViewById(R.id.new_category_spend_value_text_view);
         Intent intent = getIntent();
         mCategory = Objects.requireNonNull(intent).getParcelableExtra(EXTRA_CATEGORY);
-        FirebaseHelper.getInstance().getCategorySpend(mCategory);
+
     }
 
     public void addNewSpend(View view){

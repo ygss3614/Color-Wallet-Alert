@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.colorwalletalert.database.FirebaseHelper;
 import com.colorwalletalert.model.Category;
 import com.colorwalletalert.ui.CWABoardActivity;
 import com.colorwalletalert.ui.R;
@@ -62,14 +63,14 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
     class CategoryViewHolder extends RecyclerView.ViewHolder {
 
         TextView mCategoryDescriptionTextView;
-        TextView mCategoryTargetTextView;
+        TextView mCategoryAvailableAmountTextView;
         TextView mCategorySuggestedTextView;
         ImageView mCategoryIconImageView;
 
         CategoryViewHolder(View itemView){
             super(itemView);
             mCategoryDescriptionTextView =  itemView.findViewById(R.id.category_description_text_view);
-            mCategoryTargetTextView = itemView.findViewById(R.id.category_target_text_view);
+            mCategoryAvailableAmountTextView = itemView.findViewById(R.id.category_available_amount_text_view);
             mCategorySuggestedTextView = itemView.findViewById(R.id.category_sugested_text_view);
             mCategoryIconImageView = itemView.findViewById(R.id.category_icon_image_view);
         }
@@ -77,14 +78,19 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
         void bind(final Category category, final OnItemClickListener listener){
             Resources resource = context.getResources();
             mCategoryDescriptionTextView.setText(category.getDescription().toLowerCase());
-            // TODO atualizar esse valor de acordo com o gasto inserido
-            mCategoryTargetTextView.setText(
+
+            // COMPLETED call getCategorySpend to update available amount
+            //get total spend and update category
+            FirebaseHelper.getInstance().getCategorySpend(category);
+
+            mCategoryAvailableAmountTextView.setText(
                     String.format(resource.getString(R.string.category_currency),
-                            category.getTarget().toString()));
-            // TODO atualizar esse valor de acordo com o gasto inserido
+                            category.getAvailableAmount().toString()));
+
+            // COMPLETED atualizar esse valor de acordo com o gasto inserido
             mCategorySuggestedTextView.setText(
                     String.format(resource.getString(R.string.category_suggested_daily_spend),
-                            category.getSuggestedDailySpend().toString()));
+                            category.getSuggestedDailySpend()));
 
             if (category.getIconPath() != -1) {
                     Picasso.get().load(category.getIconPath())

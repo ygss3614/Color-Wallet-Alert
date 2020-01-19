@@ -12,14 +12,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class FirebaseHelper {
     private final String TAG = "FirebaseHelper";
     private final String DOCUMENT_CATEGORY = "categories";
     private final String DOCUMENT_SPEND = "spends";
+
     private static FirebaseHelper instance;
+
+    private String mCategoryKey;
     final FirebaseDatabase database;
 
 
@@ -70,6 +76,7 @@ public class FirebaseHelper {
     public void saveCategory(Category category){
         DatabaseReference messagesRef = database.getReference(DOCUMENT_CATEGORY);
         String categoryIdKey = messagesRef.push().getKey();
+//        category.setKey(categoryIdKey);
         messagesRef.child(categoryIdKey).setValue(category);
     }
 
@@ -90,39 +97,79 @@ public class FirebaseHelper {
     }
 
     /***
-     * name: getCategoriesSpend
+     * name: getCategorySpend
      * description: get spends by category
      * params: CategorySpend categorySpend
      *
      * @return
      * @param category
      */
-    public void getCategorySpend(Category category){
+    public void getCategorySpend(final Category category){
 
         DatabaseReference messagesRef = database.getReference(DOCUMENT_SPEND);
 
         ValueEventListener queryValueListener = new ValueEventListener() {
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                Float mCategorySpend = Float.valueOf(0);
+                Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
+                Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
+                while (iterator.hasNext()) {
+                    DataSnapshot next = (DataSnapshot) iterator.next();
+                    mCategorySpend = mCategorySpend +
+                            Float.parseFloat(next.child("spendValue").getValue().toString());
 
+                }
+                updateCategorySpend(mCategorySpend, category);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+
+        // query  all category spends and filtering by category given
+        Query categorySpendsQuery = messagesRef.
+                orderByChild("category/description").equalTo(category.getDescription());
+        categorySpendsQuery.addListenerForSingleValueEvent(queryValueListener);
+    }
+
+    /***
+     * name: updateCategorySpend
+     * description: update a Category Spend
+     * params: Category category
+     *
+     * @return
+     * @param category
+     */
+
+    public void updateCategorySpend(final Float value, Category category){
+
+        DatabaseReference messagesRef = database.getReference(DOCUMENT_CATEGORY);
+
+        ValueEventListener queryValueListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterable<DataSnapshot> snapshotIterator = dataSnapshot.getChildren();
                 Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
 
                 while (iterator.hasNext()) {
                     DataSnapshot next = (DataSnapshot) iterator.next();
-                    Log.i(TAG, "Value = " + next.child("category").getValue());
+                    next.getRef().child("spend").setValue(value);
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
+
         };
 
-        Query categorySpendsQuery = messagesRef.
-                orderByChild("category/description").equalTo(category.getDescription());
-        categorySpendsQuery.addListenerForSingleValueEvent(queryValueListener);
+        // query  all category spends and filtering by category given
+        Query categoryKeyQuery = messagesRef.orderByChild("description")
+                .equalTo(category.getDescription());
+        categoryKeyQuery.addListenerForSingleValueEvent(queryValueListener);
+
     }
 }
+

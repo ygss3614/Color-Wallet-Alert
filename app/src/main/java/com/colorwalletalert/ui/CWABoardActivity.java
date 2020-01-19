@@ -74,7 +74,6 @@ public class CWABoardActivity extends AppCompatActivity {
         // using FirebaseRecyclerOption to load categories
         FirebaseRecyclerOptions categories = FirebaseHelper.getInstance().readCategories();
 
-
         mCategoryAdapter = new FirebaseCategoryAdapter(categories, mContext,
                 new FirebaseCategoryAdapter.OnItemClickListener() {
             @Override
