@@ -71,7 +71,11 @@ public class FirebaseCategorySpendDetailedAdapter
 
         void bind(final CategorySpend categorySpend){
             Resources resource = context.getResources();
-//            mCategorySpendDateTextView.setText(categorySpend.getSpendDay());
+            Log.d(TAG, String.valueOf(categorySpend.getSpendDay()));
+            mCategorySpendDateTextView.setText(
+                    String.format("%s/%s"
+                            , String.valueOf(categorySpend.getSpendDay())
+                            , String.valueOf(categorySpend.getSpendMonth())));
             mCategorySpendValueTextView.setText(
                     String.format(resource.getString(R.string.category_currency),
                             categorySpend.getSpendValue().toString()));
