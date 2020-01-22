@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
+
 public class FirebaseHelper {
     private final String TAG = "FirebaseHelper";
     private final String DOCUMENT_CATEGORY = "categories";
@@ -25,7 +27,6 @@ public class FirebaseHelper {
 
     private static FirebaseHelper instance;
 
-    private String mCategoryKey;
     final FirebaseDatabase database;
 
 
@@ -47,6 +48,36 @@ public class FirebaseHelper {
      *
      * @return
      */
+    //TODO: query por mês
+    //TODO: zerar category spend field na mudança de mes
+    public FirebaseRecyclerOptions<CategorySpend> readCategoriesSpends(Category category){
+        DatabaseReference messagesRef = database.getReference(DOCUMENT_SPEND);
+        // query  all category spends and filtering by category given
+        Query categorySpendsQuery = messagesRef.
+                orderByChild("categoryName").equalTo(category.getDescription());
+
+        SnapshotParser<CategorySpend> parser = new SnapshotParser<CategorySpend>() {
+            @Override
+            public CategorySpend parseSnapshot(DataSnapshot dataSnapshot) {
+                CategorySpend friendlyMessage = dataSnapshot.getValue(CategorySpend.class);
+                return friendlyMessage;
+            }
+        };
+
+
+        FirebaseRecyclerOptions<CategorySpend> options = new FirebaseRecyclerOptions.Builder<CategorySpend>()
+                .setQuery(categorySpendsQuery, parser).build();
+
+        return options;
+    }
+
+    /***
+     * name: readCategories
+     * description: read registered categories and load in FirebaseRecyclerOptions
+     * params: Category category
+     *
+     * @return FirebaseRecyclerOptions
+     */
     public FirebaseRecyclerOptions<Category> readCategories(){
         DatabaseReference messagesRef = database.getReference(DOCUMENT_CATEGORY);
 
@@ -65,30 +96,6 @@ public class FirebaseHelper {
         return options;
     }
 
-    /***
-     * name: readCategoriesSpends
-     * description: read from Firebase database categories spends
-     * params:
-     *
-     * @return
-     */
-    public FirebaseRecyclerOptions<CategorySpend> readCategoriesSpends(){
-        DatabaseReference messagesRef = database.getReference(DOCUMENT_SPEND);
-
-        SnapshotParser<CategorySpend> parser = new SnapshotParser<CategorySpend>() {
-            @Override
-            public CategorySpend parseSnapshot(DataSnapshot dataSnapshot) {
-                CategorySpend friendlyMessage = dataSnapshot.getValue(CategorySpend.class);
-                return friendlyMessage;
-            }
-        };
-
-        FirebaseRecyclerOptions<CategorySpend> options = new FirebaseRecyclerOptions.Builder<CategorySpend>()
-                .setQuery(messagesRef, parser).build();
-        Log.d(TAG, String.valueOf(options.getSnapshots().size()));
-        return options;
-    }
-
 
     /***
      * name: saveCategories
@@ -100,7 +107,6 @@ public class FirebaseHelper {
     public void saveCategory(Category category){
         DatabaseReference messagesRef = database.getReference(DOCUMENT_CATEGORY);
         String categoryIdKey = messagesRef.push().getKey();
-//        category.setKey(categoryIdKey);
         messagesRef.child(categoryIdKey).setValue(category);
     }
 
@@ -154,7 +160,7 @@ public class FirebaseHelper {
 
         // query  all category spends and filtering by category given
         Query categorySpendsQuery = messagesRef.
-                orderByChild("category/description").equalTo(category.getDescription());
+                orderByChild("categoryName").equalTo(category.getDescription());
         categorySpendsQuery.addListenerForSingleValueEvent(queryValueListener);
     }
 

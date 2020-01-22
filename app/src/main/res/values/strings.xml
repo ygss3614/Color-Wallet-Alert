@@ -21,5 +21,7 @@
     <string name="category_list_empty_problem">Why don\'t you add your first category?</string>
     <string name="category_list_empty_solution">Click the yellow button to start! </string>
 
+    <!--Category spends detailed-->
+    <string name="category_total_spend_label_text">Total Spend</string>
 
 </resources>

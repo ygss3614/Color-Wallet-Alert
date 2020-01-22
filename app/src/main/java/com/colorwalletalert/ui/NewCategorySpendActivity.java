@@ -32,7 +32,7 @@ public class NewCategorySpendActivity extends AppCompatActivity {
 
     public void addNewSpend(View view){
         CategorySpend categorySpend =
-                new CategorySpend(mCategory,
+                new CategorySpend(mCategory.getDescription(),
                         Float.parseFloat(mNewCategorySpendValueTextView.getText().toString()));
         FirebaseHelper.getInstance().saveCategorySpend(categorySpend);
         backToBoard();

@@ -87,16 +87,10 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
 
             Resources resource = context.getResources();
             mCategoryCardView.setBackgroundColor(resource.getColor(category.getCardBackgroundColor()));
-
-//            mCategoryCardView.setBackground(
-//                    resource.getColor(category.getCardBackgroundColor()));
-
             mCategoryDescriptionTextView.setText(category.getDescription().toLowerCase());
-
             mCategoryAvailableAmountTextView.setText(
                     String.format(resource.getString(R.string.category_currency),
                             category.getAvailableAmount().toString()));
-
             mCategorySuggestedTextView.setText(
                     String.format(resource.getString(R.string.category_suggested_daily_spend),
                             category.getSuggestedDailySpend()));

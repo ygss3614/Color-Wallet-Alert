@@ -3,40 +3,65 @@ package com.colorwalletalert.model;
 import java.time.LocalDateTime;
 
 public class CategorySpend {
-    public Category category;
+    public String categoryName;
     public Float spendValue;
-    public LocalDateTime spendDate;
+    public int spendDay;
+    public int spendMonth;
+    public int spendYear;
 
     public CategorySpend() {}
 
-    public CategorySpend(Category category, Float value) {
-        this.category = category;
+    public CategorySpend(String categoryName, Float value) {
+        this.categoryName = categoryName;
         this.spendValue = value;
-        this.spendDate = LocalDateTime.now();
+        this.spendDay = LocalDateTime.now().toLocalDate().getDayOfMonth();
+        this.spendMonth = LocalDateTime.now().toLocalDate().getMonthValue();
+        this.spendYear = LocalDateTime.now().toLocalDate().getYear();
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
     public Float getSpendValue() {
         return spendValue;
     }
 
-    public LocalDateTime getSpendDate() {
-        return spendDate;
-    }
 
-    public void setCategory(Category category) {
-        this.category = category;
+
+    public void setCategory(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public void setSpendValue(Float spendValue) {
         this.spendValue = spendValue;
     }
 
-    public void setSpendDate(LocalDateTime spendDate) {
-        this.spendDate = spendDate;
+    public int getSpendDay() {
+        return spendDay;
     }
 
+    public int getSpendMonth() {
+        return spendMonth;
+    }
+
+    public int getSpendYear() {
+        return spendYear;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public void setSpendDay(int spendDay) {
+        this.spendDay = spendDay;
+    }
+
+    public void setSpendMonth(int spendMonth) {
+        this.spendMonth = spendMonth;
+    }
+
+    public void setSpendYear(int spendYear) {
+        this.spendYear = spendYear;
+    }
 }
