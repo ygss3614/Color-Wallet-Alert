@@ -12,6 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.auth.User;
 
 import java.util.HashMap;
@@ -201,5 +202,23 @@ public class FirebaseHelper {
         categoryKeyQuery.addListenerForSingleValueEvent(queryValueListener);
 
     }
+
+
+    public void getWidgetCategory(){
+        DatabaseReference messagesRef = database.getReference(DOCUMENT_CATEGORY);
+
+        SnapshotParser<Category> parser = new SnapshotParser<Category>() {
+            @Override
+            public Category parseSnapshot(DataSnapshot dataSnapshot) {
+                Category friendlyMessage = dataSnapshot.getValue(Category.class);
+                Log.d("CATEGORY", friendlyMessage.getDescription());
+                return friendlyMessage;
+            }
+        };
+
+
+
+    }
 }
+
 

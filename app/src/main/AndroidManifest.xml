@@ -13,6 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <service android:name="com.colorwalletalert.widget.CWAWidgetService"></service>
+        <receiver android:name="com.colorwalletalert.widget.CWAWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/cwawidget_info" />
+        </receiver>
+
         <activity
             android:name=".CWABoardActivity"
             android:label="@string/app_name"
@@ -37,12 +48,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".CWABoardActivity" />
         </activity>
-        <activity android:name=".CategorySpendsDetailedActivity"
+        <activity
+            android:name=".CategorySpendsDetailedActivity"
             android:parentActivityName=".CWABoardActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".CWABoardActivity" />
-
         </activity>
     </application>
 

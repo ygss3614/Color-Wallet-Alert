@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.colorwalletalert.database.FirebaseHelper;
 import com.colorwalletalert.model.Category;
 import com.colorwalletalert.model.CategorySpend;
+import com.colorwalletalert.widget.CWAWidgetService;
 
 import java.util.Objects;
 
@@ -27,6 +28,8 @@ public class NewCategorySpendActivity extends AppCompatActivity {
         mNewCategorySpendValueTextView = findViewById(R.id.new_category_spend_value_text_view);
         Intent intent = getIntent();
         mCategory = Objects.requireNonNull(intent).getParcelableExtra(EXTRA_CATEGORY);
+
+        CWAWidgetService.startActionUpdateCategory(this, mCategory);
 
     }
 

@@ -23,5 +23,7 @@
 
     <!--Category spends detailed-->
     <string name="category_total_spend_label_text">Total Spend</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 
 </resources>
