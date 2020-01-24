@@ -87,9 +87,12 @@ public class CategorySpendsDetailedActivity extends AppCompatActivity {
         mCategorySpendTotalValueTextView.setText(
                 String.format(getString(R.string.category_currency),
                         category.getSpend().toString()));
-        if (category.getIconPath() != -1) {
+        if (category.getIconPath() != "") {
+            int iconId = mContext.getResources()
+                    .getIdentifier(category.getIconPath(),
+                            "drawable", mContext.getPackageName());
             Picasso.get().load(category.getIconPath())
-                    .placeholder(category.getIconPath())
+                    .placeholder(iconId)
                     .into(mCategoryIconImageView);
         }
     }

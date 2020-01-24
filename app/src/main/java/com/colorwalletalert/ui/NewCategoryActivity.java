@@ -28,7 +28,7 @@ public class NewCategoryActivity extends AppCompatActivity {
     private TextView mCategoryTargetTextView;
     private GridLayoutManager mLayoutManager;
     private TypedArray mCategoryIconList;
-    private int categoryIconSelected = -1;
+    private String categoryIconSelected = "";
     private MaterialCardView mMessageCardView;
 
     @Override
@@ -63,8 +63,6 @@ public class NewCategoryActivity extends AppCompatActivity {
     }
 
     public void loadCategoryIcons() {
-
-
         final RecyclerView categoryIconRecyclerView = findViewById(R.id.new_category_icon_recycler_view);
 
         categoryIconRecyclerView.setLayoutManager(mLayoutManager);
@@ -72,8 +70,8 @@ public class NewCategoryActivity extends AppCompatActivity {
         CategoryIconAdapter adapter = new CategoryIconAdapter(mCategoryIconList,
                 new CategoryIconAdapter.OnItemClickListener() {
                     @Override
-                    public void onItemClick(int iconId) {
-                        categoryIconSelected = iconId;
+                    public void onItemClick(String iconName) {
+                        categoryIconSelected = iconName;
                     }
                 });
         categoryIconRecyclerView.setAdapter(adapter);

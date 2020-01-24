@@ -12,11 +12,12 @@ public class Category implements Parcelable {
     public String description;
     public Float target;
     public Float spend;
-    public int iconPath;
+    public String iconPath;
+
 
     public Category() {}
 
-    public Category(String description, Float target, int iconPath) {
+    public Category(String description, Float target, String iconPath) {
         this.description = description;
         this.target = target;
         this.spend = Float.valueOf(0);
@@ -35,7 +36,7 @@ public class Category implements Parcelable {
         } else {
             spend = in.readFloat();
         }
-        iconPath = in.readInt();
+        iconPath = in.readString();
     }
 
     public void setDescription(String description) {
@@ -50,7 +51,7 @@ public class Category implements Parcelable {
         this.spend = spend;
     }
 
-    public void setIconPath(int iconPath) {
+    public void setIconPath(String iconPath) {
         this.iconPath = iconPath;
     }
 
@@ -77,7 +78,7 @@ public class Category implements Parcelable {
         return target;
     }
 
-    public int getIconPath() {
+    public String getIconPath() {
         return iconPath;
     }
 
@@ -101,7 +102,7 @@ public class Category implements Parcelable {
             parcel.writeByte((byte) 1);
             parcel.writeFloat(spend);
         }
-        parcel.writeInt(iconPath);
+        parcel.writeString(iconPath);
     }
 
 

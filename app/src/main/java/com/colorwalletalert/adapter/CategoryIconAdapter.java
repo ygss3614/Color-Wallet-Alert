@@ -2,6 +2,7 @@ package com.colorwalletalert.adapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,7 @@ public class CategoryIconAdapter extends RecyclerView.Adapter<CategoryIconAdapte
 
 
     public interface OnItemClickListener {
-        void onItemClick(int iconPosition);
+        void onItemClick(String iconName);
     }
 
     private final TypedArray mCategoryIconList;
@@ -47,7 +48,7 @@ public class CategoryIconAdapter extends RecyclerView.Adapter<CategoryIconAdapte
 
     @Override
     public void onBindViewHolder(IconViewHolder iconViewHolder, int i) {
-        iconViewHolder.bind(mCategoryIconList.getResourceId(i, -1), listener);
+        iconViewHolder.bind(mCategoryIconList.getString(i), listener);
     }
 
 
@@ -64,11 +65,13 @@ public class CategoryIconAdapter extends RecyclerView.Adapter<CategoryIconAdapte
             categoryIconImageView = itemView.findViewById(R.id.new_category_icon_image_view);
         }
 
-        void bind(final int icon, final OnItemClickListener listener){
-
+        void bind(final String icon, final OnItemClickListener listener){
+            int iconId = context.getResources()
+                    .getIdentifier(icon,
+                            "drawable", context.getPackageName());
             Picasso.get()
                     .load(icon)
-                    .error(icon)
+                    .error(iconId)
                     .into(categoryIconImageView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
