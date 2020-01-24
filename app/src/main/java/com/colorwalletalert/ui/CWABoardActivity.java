@@ -3,8 +3,6 @@ package com.colorwalletalert.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,11 +14,17 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+// TODO: tratar lista de categorias vazia
+// TODO: transição entre as telas
+// COMPLETED: adicionar subtextos
+// COMPLETED: adicionar icone do app
 
 public class CWABoardActivity extends AppCompatActivity {
     static final String TAG = "MainActivity";
@@ -36,7 +40,10 @@ public class CWABoardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         mContext = CWABoardActivity.this;
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        ActionBar ab = getSupportActionBar();
+        ab.setSubtitle("sub-title");
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,10 +51,7 @@ public class CWABoardActivity extends AppCompatActivity {
                 mContext.startActivity(intent);
             }
         });
-        // TODO: tratar lista de categorias vazia
-        // TODO: transição entre as telas
-        // TODO: adicionar subtextos
-        // TODO: adicionar icone do app
+
 
         mMessageCardView = findViewById(R.id.empty_message_cardview);
         mMessageCardView.setVisibility(View.GONE);
@@ -59,7 +63,6 @@ public class CWABoardActivity extends AppCompatActivity {
         super.onResume();
         // required to work
         mCategoryAdapter.startListening();
-
     }
 
     /***
@@ -97,7 +100,6 @@ public class CWABoardActivity extends AppCompatActivity {
             });
 
         CategoryRecyclerView.setAdapter(mCategoryAdapter);
-
     }
 
 

@@ -1,5 +1,6 @@
 package com.colorwalletalert.ui;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +41,12 @@ public class NewCategoryActivity extends AppCompatActivity {
         mCategoryIconList = getResources().obtainTypedArray(R.array.category_icons);
         mLayoutManager = new GridLayoutManager(NewCategoryActivity.this, 6);
 
+        //Adding subtitle
+        ActionBar ab = getSupportActionBar();
+        ab.setSubtitle(R.string.add_new_category_subtitle);
+
         loadCategoryIcons();
+
     }
 
     public void addNewCategory(View v) {
@@ -59,7 +65,7 @@ public class NewCategoryActivity extends AppCompatActivity {
         Context context = NewCategoryActivity.this;
         Intent intent = new Intent(context, CWABoardActivity.class);
         context.startActivity(intent);
-        finish();
+        this.finish();
     }
 
     public void loadCategoryIcons() {

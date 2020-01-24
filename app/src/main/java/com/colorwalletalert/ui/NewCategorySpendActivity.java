@@ -1,5 +1,6 @@
 package com.colorwalletalert.ui;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -29,6 +30,10 @@ public class NewCategorySpendActivity extends AppCompatActivity {
         Intent intent = getIntent();
         mCategory = Objects.requireNonNull(intent).getParcelableExtra(EXTRA_CATEGORY);
 
+        //Adding subtitle
+        ActionBar ab = getSupportActionBar();
+        ab.setSubtitle(R.string.add_new_category_spend_subtitle);
+
         CWAWidgetService.startActionUpdateCategory(this, mCategory);
 
     }
@@ -39,15 +44,13 @@ public class NewCategorySpendActivity extends AppCompatActivity {
                         Float.parseFloat(mNewCategorySpendValueTextView.getText().toString()));
         FirebaseHelper.getInstance().saveCategorySpend(categorySpend);
         backToBoard();
-
-
     }
 
     public void backToBoard(){
         Context context = NewCategorySpendActivity.this;
         Intent intent = new Intent(context, CWABoardActivity.class);
         context.startActivity(intent);
-        finish();
+        this.finish();
     }
 
 }
