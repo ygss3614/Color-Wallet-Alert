@@ -40,12 +40,14 @@ public class NewCategorySpendActivity extends AppCompatActivity {
         FirebaseHelper.getInstance().saveCategorySpend(categorySpend);
         backToBoard();
 
+
     }
 
     public void backToBoard(){
         Context context = NewCategorySpendActivity.this;
         Intent intent = new Intent(context, CWABoardActivity.class);
         context.startActivity(intent);
+        finish();
     }
 
 }

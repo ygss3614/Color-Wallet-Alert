@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Color Wallet Alert</string>
+    <string name="action_settings">Settings</string>
+
+    <!--new category strings-->
+    <string name="category_description_hint_text">Descrição</string>
+    <string name="category_target_hint_text">Valor Máximo</string>
+    <string name="category_icon_label_text">Selecione um ícone</string>
+    <string name="category_spend_hint_text">Gasto</string>
+    <string name="category_button_text">Salvar</string>
+
+
+    <!--Board-->
+    <string name="category_description_text">Educação</string>
+    <string name="category_target_text">200.00</string>
+    <string name="category_suggested_text">Gasto diário sugerido R$ 18</string>
+    <string name="category_status_content_description">Status da Categoria</string>
+    <string name="category_icon">Ícone da Categoria</string>
+    <string name="category_currency">R$ %s</string>
+    <string name="category_suggested_daily_spend">Gasto diário sugerido R$ %s</string>
+    <string name="category_list_empty_problem">Vamos começar adicionando sua primeira categoria</string>
+    <string name="category_list_empty_solution">Click no botão amarelo para começar! </string>
+
+    <!--Category spends detailed-->
+    <string name="category_total_spend_label_text">Total Gasto</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+
+</resources>

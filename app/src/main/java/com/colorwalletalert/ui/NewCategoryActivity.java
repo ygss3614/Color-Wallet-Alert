@@ -43,7 +43,7 @@ public class NewCategoryActivity extends AppCompatActivity {
         loadCategoryIcons();
     }
 
-    public void addNewCategory(View v){
+    public void addNewCategory(View v) {
 
         Category category =
                 new Category(mCategoryDescriptionTextView.getText().toString(),
@@ -55,13 +55,14 @@ public class NewCategoryActivity extends AppCompatActivity {
 
     }
 
-    public void backToBoard(){
+    public void backToBoard() {
         Context context = NewCategoryActivity.this;
         Intent intent = new Intent(context, CWABoardActivity.class);
         context.startActivity(intent);
+        finish();
     }
 
-    public void loadCategoryIcons(){
+    public void loadCategoryIcons() {
 
 
         final RecyclerView categoryIconRecyclerView = findViewById(R.id.new_category_icon_recycler_view);
@@ -70,13 +71,11 @@ public class NewCategoryActivity extends AppCompatActivity {
 
         CategoryIconAdapter adapter = new CategoryIconAdapter(mCategoryIconList,
                 new CategoryIconAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int iconId) {
-                categoryIconSelected = iconId;
-            }
-        });
+                    @Override
+                    public void onItemClick(int iconId) {
+                        categoryIconSelected = iconId;
+                    }
+                });
         categoryIconRecyclerView.setAdapter(adapter);
-
-
     }
 }
