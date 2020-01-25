@@ -92,7 +92,7 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
                     String.format(resource.getString(R.string.category_currency),
                             category.getAvailableAmount().toString()));
 
-            if (category.getAvailableAmount() < 0) {
+            if (category.getAvailableAmount().intValue() < 0) {
                 mCategorySuggestedTextView.setText(resource.getString(R.string.stop_spend_message));
             }else {
                 mCategorySuggestedTextView.setText(

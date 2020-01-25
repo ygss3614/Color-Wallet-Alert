@@ -81,9 +81,14 @@ public class CategorySpendsDetailedActivity extends AppCompatActivity {
         mCategoryAvailableAmountTextView.setText(
                 String.format(getString(R.string.category_currency),
                         category.getAvailableAmount().toString()));
-        mCategorySuggestedTextView.setText(
-                String.format(getString(R.string.category_suggested_daily_spend),
-                        category.getSuggestedDailySpend()));
+        if (category.getAvailableAmount().intValue() < 0) {
+            mCategorySuggestedTextView.setText(R.string.stop_spend_message);
+        }else{
+            mCategorySuggestedTextView.setText(
+                    String.format(getString(R.string.category_suggested_daily_spend),
+                            category.getSuggestedDailySpend()));
+        }
+
         mCategorySpendTotalValueTextView.setText(
                 String.format(getString(R.string.category_currency),
                         category.getSpend().toString()));
