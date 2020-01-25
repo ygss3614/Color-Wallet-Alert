@@ -23,6 +23,7 @@
     <string name="add_new_category_subtitle">Nova Categoria</string>
     <string name="add_new_category_spend_subtitle">Novo Gasto</string>
     <string name="add_new_category_spend_switch_text">Ativar Localização</string>
+    <string name="stop_spend_message">Você ultrapassou o limite de gastos</string>
 
     <!--Category spends detailed-->
     <string name="category_total_spend_label_text">Total Gasto</string>

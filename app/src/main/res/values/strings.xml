@@ -23,6 +23,7 @@
     <string name="add_new_category_subtitle">New Category</string>
     <string name="add_new_category_spend_subtitle">New Spend</string>
     <string name="add_new_category_spend_switch_text">Enable Location</string>
+    <string name="stop_spend_message">You have exceed the limit</string>
 
     <!--Category spends detailed-->
     <string name="category_total_spend_label_text">Total Spend</string>

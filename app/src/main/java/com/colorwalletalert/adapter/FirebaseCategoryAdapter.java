@@ -91,10 +91,14 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
             mCategoryAvailableAmountTextView.setText(
                     String.format(resource.getString(R.string.category_currency),
                             category.getAvailableAmount().toString()));
-            mCategorySuggestedTextView.setText(
-                    String.format(resource.getString(R.string.category_suggested_daily_spend),
-                            category.getSuggestedDailySpend()));
 
+            if (category.getAvailableAmount() < 0) {
+                mCategorySuggestedTextView.setText(resource.getString(R.string.stop_spend_message));
+            }else {
+                mCategorySuggestedTextView.setText(
+                        String.format(resource.getString(R.string.category_suggested_daily_spend),
+                                category.getSuggestedDailySpend()));
+            }
             if (category.getIconPath() != "") {
                 int iconId = context.getResources()
                         .getIdentifier(category.getIconPath(),

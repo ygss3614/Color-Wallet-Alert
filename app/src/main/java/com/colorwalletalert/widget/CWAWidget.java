@@ -49,9 +49,15 @@ public class CWAWidget extends AppWidgetProvider {
             views.setTextViewText(R.id.category_available_amount_widget_text_view,
                     String.format(resource.getString(R.string.category_currency),
                             String.valueOf(category.getAvailableAmount())));
-            views.setTextViewText(R.id.category_sugested_widget_text_view,
-                    String.format(resource.getString(R.string.category_suggested_daily_spend),
-                    category.getSuggestedDailySpend().toString()));
+            if (category.getAvailableAmount() < 0) {
+                views.setTextViewText(R.id.category_sugested_widget_text_view,
+                        resource.getString(R.string.stop_spend_message));
+            }else{
+                views.setTextViewText(R.id.category_sugested_widget_text_view,
+                        String.format(resource.getString(R.string.category_suggested_daily_spend),
+                                category.getSuggestedDailySpend().toString()));
+            }
+
             views.setInt(R.id.widget_linear_layout, "setBackgroundResource",
                     category.getCardBackgroundColor());
         }
