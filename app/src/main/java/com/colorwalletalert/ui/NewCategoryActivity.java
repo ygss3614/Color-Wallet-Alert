@@ -2,6 +2,7 @@ package com.colorwalletalert.ui;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +26,7 @@ import com.google.android.material.card.MaterialCardView;
 
 public class NewCategoryActivity extends AppCompatActivity {
     static final String TAG = "NewCategoryActivity";
+    private static final String ICON_RESOURCE_NAME = "icone_resource_name";
     private TextView mCategoryDescriptionTextView;
     private TextView mCategoryTargetTextView;
     private GridLayoutManager mLayoutManager;
@@ -46,6 +48,13 @@ public class NewCategoryActivity extends AppCompatActivity {
         ab.setSubtitle(R.string.add_new_category_subtitle);
 
         loadCategoryIcons();
+
+        if (savedInstanceState != null) {
+            if (savedInstanceState.containsKey(ICON_RESOURCE_NAME)) {
+                String icon = savedInstanceState.getString(ICON_RESOURCE_NAME);
+                categoryIconSelected = icon;
+            }
+        }
 
     }
 
@@ -82,4 +91,11 @@ public class NewCategoryActivity extends AppCompatActivity {
                 });
         categoryIconRecyclerView.setAdapter(adapter);
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(ICON_RESOURCE_NAME, categoryIconSelected);
+    }
+
 }

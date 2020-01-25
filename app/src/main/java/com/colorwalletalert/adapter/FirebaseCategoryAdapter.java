@@ -99,11 +99,11 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
                         String.format(resource.getString(R.string.category_suggested_daily_spend),
                                 category.getSuggestedDailySpend()));
             }
-            if (category.getIconPath() != "") {
+            if (!category.getIconPath().equals("") && !category.getIconPath().isEmpty()) {
                 int iconId = context.getResources()
                         .getIdentifier(category.getIconPath(),
                                 "drawable", context.getPackageName());
-                    Picasso.get().load(category.getIconPath())
+                    Picasso.get().load(iconId)
                             .placeholder(iconId)
                             .into(mCategoryIconImageView);
             }
