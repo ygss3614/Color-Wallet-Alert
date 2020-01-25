@@ -7,6 +7,7 @@
     <string name="category_target_hint_text">Target</string>
     <string name="category_icon_label_text">Select one Icon</string>
     <string name="category_spend_hint_text">Spend</string>
+    <string name="category_location_hint_text">Location</string>
     <string name="category_button_text">Save</string>
 
 

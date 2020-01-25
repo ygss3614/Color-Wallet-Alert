@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class CategorySpend {
     public String categoryName;
+    public String spendLocation;
     public Float spendValue;
     public int spendDay;
     public int spendMonth;
@@ -11,9 +12,10 @@ public class CategorySpend {
 
     public CategorySpend() {}
 
-    public CategorySpend(String categoryName, Float value) {
+    public CategorySpend(String categoryName, Float value, String location) {
         this.categoryName = categoryName;
         this.spendValue = value;
+        this.spendLocation = location;
         this.spendDay = LocalDateTime.now().toLocalDate().getDayOfMonth();
         this.spendMonth = LocalDateTime.now().toLocalDate().getMonthValue();
         this.spendYear = LocalDateTime.now().toLocalDate().getYear();
@@ -63,5 +65,9 @@ public class CategorySpend {
 
     public void setSpendYear(int spendYear) {
         this.spendYear = spendYear;
+    }
+
+    public String getSpendLocation() {
+        return spendLocation;
     }
 }

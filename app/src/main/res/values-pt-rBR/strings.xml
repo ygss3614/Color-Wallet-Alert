@@ -7,6 +7,7 @@
     <string name="category_target_hint_text">Valor Máximo</string>
     <string name="category_icon_label_text">Selecione um ícone</string>
     <string name="category_spend_hint_text">Gasto</string>
+    <string name="category_location_hint_text">Localização</string>
     <string name="category_button_text">Salvar</string>
 
 

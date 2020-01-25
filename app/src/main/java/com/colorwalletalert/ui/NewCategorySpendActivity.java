@@ -20,6 +20,7 @@ public class NewCategorySpendActivity extends AppCompatActivity {
     private final String TAG = "NewCategorySpendActivity";
     public static final String EXTRA_CATEGORY = "category";
     private TextView mNewCategorySpendValueTextView;
+    private TextView mNewCategoryLocationValueTextView;
     private Category mCategory;
 
 
@@ -28,6 +29,7 @@ public class NewCategorySpendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_category_spend);
         mNewCategorySpendValueTextView = findViewById(R.id.new_category_spend_value_text_view);
+        mNewCategoryLocationValueTextView = findViewById(R.id.new_category_spend_location_text_view);
 
         Intent intent = getIntent();
         mCategory = Objects.requireNonNull(intent).getParcelableExtra(EXTRA_CATEGORY);
@@ -42,9 +44,9 @@ public class NewCategorySpendActivity extends AppCompatActivity {
     }
 
     public void addNewSpend(View view) {
-        CategorySpend categorySpend =
-                new CategorySpend(mCategory.getDescription(),
-                        Float.parseFloat(mNewCategorySpendValueTextView.getText().toString()));
+        CategorySpend categorySpend = new CategorySpend(mCategory.getDescription(),
+                        Float.parseFloat(mNewCategorySpendValueTextView.getText().toString()),
+                        mNewCategoryLocationValueTextView.getText().toString());
         FirebaseHelper.getInstance().saveCategorySpend(categorySpend);
         backToBoard();
     }

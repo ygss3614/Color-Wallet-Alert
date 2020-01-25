@@ -80,7 +80,7 @@ public class FirebaseCategorySpendDetailedAdapter
                     String.format(resource.getString(R.string.category_currency),
                             categorySpend.getSpendValue().toString()));
 
-            mCategorySpendLocationTextView.setText("location");
+            mCategorySpendLocationTextView.setText(categorySpend.getSpendLocation());
         }
     }
 }
