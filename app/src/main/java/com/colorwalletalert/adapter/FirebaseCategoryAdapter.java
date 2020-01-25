@@ -115,12 +115,15 @@ public class FirebaseCategoryAdapter extends FirebaseRecyclerAdapter<Category, F
                 }
             });
 
-            mCategorySpendsImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onDetailClick(category);
-                }
-            });
+            if (mCategorySpendsImageView != null){
+                mCategorySpendsImageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        listener.onDetailClick(category);
+                    }
+                });
+
+            }
 
         }
     }

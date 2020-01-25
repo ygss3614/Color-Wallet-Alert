@@ -72,7 +72,7 @@ public class CategorySpendsDetailedActivity extends AppCompatActivity {
         mCategoryCardView = findViewById(R.id.category_card_view);
         mCategorySpendTotalValueTextView = findViewById(R.id.category_total_spends_value_text_view);
 
-        mCategorySpendsImageView.setVisibility(View.INVISIBLE);
+        if (mCategorySpendsImageView != null) mCategorySpendsImageView.setVisibility(View.INVISIBLE);
 
         //get total spend and update category
         FirebaseHelper.getInstance().getCategorySpendToUpdate(category);
