@@ -10,6 +10,7 @@ import android.view.View;
 import com.colorwalletalert.adapter.FirebaseCategoryAdapter;
 import com.colorwalletalert.database.FirebaseHelper;
 import com.colorwalletalert.model.Category;
+import com.colorwalletalert.utils.Utils;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -73,9 +74,10 @@ public class CWABoardActivity extends AppCompatActivity {
      */
     public void setAdapter(){
         RecyclerView CategoryRecyclerView = findViewById(R.id.category_recycler_view);
-        // TODO calcular a quantidade de colunas no grid de acordo com o tamanho da tela
+        // COMPLETED calcular a quantidade de colunas no grid de acordo com o tamanho da tela
+        int numberOfColumns = Utils.getInstance().calculateNoOfColumns(this, 500);
         RecyclerView.LayoutManager mLayoutManager =
-                new GridLayoutManager(CWABoardActivity.this, 1);
+                new GridLayoutManager(CWABoardActivity.this, numberOfColumns);
         CategoryRecyclerView.setLayoutManager(mLayoutManager);
 
         // using FirebaseRecyclerOption to load categories

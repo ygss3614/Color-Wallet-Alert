@@ -1,5 +1,8 @@
 package com.colorwalletalert.utils;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
+
 import java.util.Calendar;
 
 public class Utils {
@@ -44,6 +47,25 @@ public class Utils {
         int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
         int daysLeft = lastDay - currentDay;
         return daysLeft;
+    }
+
+    /***
+     * name: calculateNoOfColumns
+     * description: Calculates number of columns according to screen size
+     * months
+     * from: https://stackoverflow.com/questions/33575731/gridlayoutmanager-how-to-auto-fit-columns
+     * params:
+     *
+     * @return int daysLeft
+     * @param
+     */
+
+
+    public static int calculateNoOfColumns(Context context, float columnWidthDp) { // For example columnWidthdp=180
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        float screenWidthDp = displayMetrics.widthPixels / displayMetrics.density;
+        int noOfColumns = (int) (screenWidthDp / columnWidthDp + 0.5); // +0.5 for correct rounding to int.
+        return noOfColumns;
     }
 
 }

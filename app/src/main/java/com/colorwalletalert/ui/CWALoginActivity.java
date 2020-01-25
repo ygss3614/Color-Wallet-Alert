@@ -76,7 +76,7 @@ public class CWALoginActivity extends AppCompatActivity {
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(LOGIN_EXTRA, mCWALoginName.getText().toString() );
-        outState.putString(PASSWORD_EXTRA, mCWALoginPassword.getText().toString() );
+//        outState.putString(PASSWORD_EXTRA, mCWALoginPassword.getText().toString() );
     }
 
     private void goToNextActivity(){

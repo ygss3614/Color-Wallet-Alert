@@ -22,6 +22,7 @@
     <string name="category_list_empty_solution">Click no botão amarelo para começar! </string>
     <string name="add_new_category_subtitle">Nova Categoria</string>
     <string name="add_new_category_spend_subtitle">Novo Gasto</string>
+    <string name="add_new_category_spend_switch_text">Ativar Localização</string>
 
     <!--Category spends detailed-->
     <string name="category_total_spend_label_text">Total Gasto</string>
@@ -41,6 +42,13 @@
     <string name="login_failed">"Falha no Login"</string>
     <string name="icon_content_description">ícone do aplicativo</string>
     <string name="app_icon">App Icon</string>
+
+    <string name="service_not_available">Service Not Available</string>
+    <string name="invalid_lat_long_used">Latitude e Longitute inválida</string>
+    <string name="no_address_found">Endereço não encontrado</string>
+    <string name="address_found">Endereço encontrado</string>
+    <string name="no_geocoder_available">Geocoder indisponível</string>
+
 
 
 </resources>
